@@ -1,0 +1,26 @@
+== klon
+
+klon is an experimental project to see if significant parallel
+processing can help with detecting duplicates in text files.
+
+== Clone detection
+
+Klon uses a bucket algorithm. When scanning a text file each line is
+added to a buffer until a threshold (the minimum number of lines to be
+considered duplicates) is reached. At the point the hash is added to a
+map along with the starting line number and the filename.
+
+For a file of 10 lines and a duplication threshold of 6, 5 hashes are
+produced as follows:
+
+1. Hash of lines 1..6
+2. Hash of lines 2..7
+3. Hash of lines 3..8
+4. Hash of lines 4..9
+5. Hash of lines 5..10
+
+klon is currently not expected to be a full blown application to find
+text duplications. At present the goal is to establish the algorithm
+required to utilise significant parallelisation in a domain where the
+amount of processing is relatively modest when compared to the IO
+requirements.
